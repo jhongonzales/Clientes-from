@@ -1,0 +1,23 @@
+<div class="container" style="margin-top: 10px;">
+<p>Listado de Clientes</p>
+<table class="table table-success table-striped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Fecha</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cliente of clientes" class="letras">
+        <th>{{cliente.idCliente}}</th>
+        <th>{{cliente.nombre}}</th>
+        <th>{{cliente.apellido}}</th>
+        <th>{{cliente.createAt}}</th>
+        <th>{{cliente.email}}</th>
+      </tr>
+    </tbody>
+  </table>
+</div>
