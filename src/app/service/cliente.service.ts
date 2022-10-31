@@ -1,4 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Cliente } from '../cliente/cliente';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,5 +12,12 @@ import { Injectable } from '@angular/core';
 // los servicios se deben registrar en la parte de providers
 export class ClienteService {
 
-  constructor() { }
+  constructor(private cliente: HttpClient) { }
+
+  getClientes(): Observable<Cliente[]>{
+    // get devuelve un tipo generico debemos castear al tipo de dato que requerimos
+    // el método get siempre devuelve un tipo observable
+    return this.cliente.get<Cliente[]>(`${environment.HOST}/clientes`);
+  }
+
 }

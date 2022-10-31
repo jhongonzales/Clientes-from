@@ -1,3 +1,23 @@
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
 .letras{
     font-weight: lighter;
+}
+
+table {
+    width: 100%;
+    margin-top: 40px;
+}
+
+.demo-button-container {
+    padding-bottom: 16px;
+    margin-top: 10px;
+  }
+  
+.demo-button + .demo-button {
+    margin-left: 8px;
 }

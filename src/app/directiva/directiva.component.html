@@ -1,0 +1,12 @@
+<div class="container" style="margin-top: 20px;">
+    <div class="card" *ngIf="habilitar" style="margin-bottom: 10px;">
+        <div class="card-header">
+          Lenguajes
+        </div>
+        <ul class="list-group list-group-flush" *ngFor="let curso of cursos">
+          <li class="list-group-item">{{curso}}</li>
+        </ul>  
+    </div>
+    <button class="btn btn-primary" type="button" (click)="mostrar()">{{ habilitar ? 'ocultar':'mostrar'}}</button>
+</div>
+
