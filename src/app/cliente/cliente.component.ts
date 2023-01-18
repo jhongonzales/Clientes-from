@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { switchMap } from 'rxjs';
 import { ClienteService } from '../service/cliente.service';
 import { Cliente } from './cliente';
 
@@ -17,11 +19,14 @@ export class ClienteComponent implements OnInit {
   ];
   */
 
-  constructor(private service: ClienteService) { }
+  constructor(
+    private service: ClienteService,
+    private snackbar: MatSnackBar
+    ) { }
 
   dataSource: MatTableDataSource<Cliente>;
 
-  displayedColumns: string[] = ["idCliente", "nombre", "apellido", "email"];
+  displayedColumns: string[] = ["idCliente", "nombre", "apellido", "email","acciones"];
 
   @ViewChild(MatTable) table: MatTable<Cliente>;
 
@@ -35,14 +40,26 @@ export class ClienteComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerClientes();
+
+    this.service.getClienteCambio().subscribe(data => {
+      this.dataSource = new MatTableDataSource(data);
+    });
+
+    this.service.getMensajeCambio().subscribe(data => {
+      this.snackbar.open(data, 'Aviso', {duration: 3000});
+    })
+
+
   }
 
-  addClient(){
-
-  }
-
-  removeClient(){
-
+  removeClient(idCliente: number){
+    this.service.remover(idCliente).pipe(switchMap(()=>{
+      return this.service.getClientes();
+    }))
+    .subscribe(data =>{
+      this.service.setClienteCambio(data);
+      this.service.setMensajeCambio("Se eliminó");
+    })
   }
 
 }

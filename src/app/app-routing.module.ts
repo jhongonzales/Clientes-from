@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ClienteComponent } from './cliente/cliente.component';
 import { DirectivaComponent } from './directiva/directiva.component';
+import { FormComponent } from './cliente/form/form.component';
 
 // comando para crear este modulo: ng g m app-routing --flat --module=app
 // pathMatch le indica a angula la cantidad de url que debe coincidir
@@ -10,7 +11,8 @@ import { DirectivaComponent } from './directiva/directiva.component';
 const routes: Routes = [
   {path: '', redirectTo:'/clientes', pathMatch: 'full'},
   {path: 'clientes', component: ClienteComponent},
-  {path: 'directiva', component: DirectivaComponent}
+  {path: 'directiva', component: DirectivaComponent},
+  {path: 'form', component: FormComponent}
 ]
 
 @NgModule({
@@ -22,6 +24,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { 
-
 
 }

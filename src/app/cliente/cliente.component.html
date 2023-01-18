@@ -55,17 +55,32 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
+      <td mat-cell *matCellDef="let cliente">
+        <button
+          mat-button
+          color="primary"
+          type="button"
+        >
+          <mat-icon>ballot</mat-icon>
+        </button>
+        <button
+          mat-button
+          color="primary"
+          (click)="removeClient(cliente.idCliente)"
+          type="button"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
   </table>
   
   <div class="demo-button-container">
-    <button mat-raised-button (click)="addClient()" class="demo-button">
-      Agregar
-    </button>
-    <button
-        mat-raised-button
-        (click)="removeClient()"
-        class="demo-button">
-      Eliminar
+    <button mat-raised-button class="demo-button" routerLink="/form">
+      Registrar
     </button>
   </div>
   
